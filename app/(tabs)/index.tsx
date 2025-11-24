@@ -1,98 +1,121 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { useRouter } from "expo-router"; // Expo Router에서 useRouter 불러오기
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState } from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import styles from "./LoginStyles";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+// Expo Router 에서 홈 화면
 
-export default function HomeScreen() {
+const LoginNative: React.FC = () => {
+  // useRouter 훅 초기화
+  const router = useRouter();
+
+  // 상태(state): 현재 시간 "HH:MM" 형식 문자열 저장
+  const [currentTime, setCurrentTime] = useState("");
+
+  // 실시간 시계 (24시간 형식)
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      setCurrentTime(`${hours}:${minutes}`);
+    };
+
+    updateTime();
+    const timerId = setInterval(updateTime, 1000);
+    return () => clearInterval(timerId);
+  }, []);
+
+  // 회원가입 페이지 이동 함수
+  const navigateToSignup = () => {
+    router.push("/Signup");
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
+    <View style={styles.appContainer}>
+      {/* 1. 상단 상태 표시줄 (모바일 OS 상태바) */}
+      <View style={styles.statusBarContainer}>
+        <StatusBar style="auto" />
+        <Text style={styles.time}>{currentTime}</Text>
+
+        {/* 통신 및 배터리 아이콘 */}
+        <View style={styles.statusIcons}>
+          <Text style={styles.iconText}>📶</Text>
+          <Text style={styles.iconText}>🔋</Text>
+        </View>
+      </View>
+
+      {/* 2. 주요 콘텐츠 */}
+      <View style={styles.loginContent}>
+        <Text style={styles.title}>로그인</Text>
+
+        {/* 폼 영역 */}
+        <View style={styles.loginForm}>
+          {/* 아이디 입력 */}
+          <View style={styles.inputGroup}>
+            <Text style={styles.inputIcon}>👤</Text>
+            <TextInput
+              placeholder="아이디 입력"
+              keyboardType="email-address"
+              style={styles.textInput}
             />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+          </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+          {/* 비밀번호 입력 */}
+          <View style={styles.inputGroup}>
+            <Text style={styles.inputIcon}>🔒</Text>
+            <TextInput
+              placeholder="비밀번호 입력"
+              secureTextEntry={true} // 비밀번호 가리기
+              style={styles.textInput}
+            />
+          </View>
+
+          {/* 로그인 버튼 */}
+          <TouchableOpacity style={styles.primaryButton}>
+            <Text style={styles.buttonText}>로그인</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* 유틸리티 링크 */}
+        <View style={styles.utilityLinks}>
+          <Text style={styles.linkText}>아이디 찾기</Text>
+          <Text style={styles.separator}>|</Text>
+          <Text style={styles.linkText}>비밀번호 찾기</Text>
+        </View>
+
+        {/* 소셜 로그인 구분선 */}
+        <Text style={styles.socialSeparator}>
+          ------------------ Or Sign in with ------------------
+        </Text>
+
+        {/* 소셜 로그인 아이콘 */}
+        <View style={styles.socialIcons}>
+          <TouchableOpacity style={styles.socialIcon} activeOpacity={0.7}>
+            <Text style={styles.socialIconText}>📘</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialIcon} activeOpacity={0.7}>
+            <Text style={styles.socialIconText}>💬</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialIcon} activeOpacity={0.7}>
+            <Text style={styles.socialIconText}>📸</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* 3. 하단 영역 (회원가입 버튼) */}
+      <View style={styles.footerNav}>
+        {/* 🌟 '회원가입하기' 버튼에 navigateToSignup 함수를 연결합니다. */}
+        <TouchableOpacity
+          style={styles.secondaryButton}
+          onPress={navigateToSignup}
+        >
+          <Text style={styles.secondaryButtonText}>회원가입하기</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+export default LoginNative;
