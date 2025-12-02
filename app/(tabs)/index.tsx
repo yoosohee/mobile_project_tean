@@ -1,13 +1,10 @@
-import { useRouter } from "expo-router"; // Expo Router에서 useRouter 불러오기
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./LoginStyles";
 
-// Expo Router 에서 홈 화면
-
 const LoginNative: React.FC = () => {
-  // useRouter 훅 초기화
   const router = useRouter();
 
   // 상태(state): 현재 시간 "HH:MM" 형식 문자열 저장

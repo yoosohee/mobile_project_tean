@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+// 🎨 프로젝트 Primary Color 설정
 const PRIMARY_BLACK = "#0B1215";
 const SECONDARY_INDIGO = "#4F46E5";
 const PURE_WHITE = "#FFFFFF";
@@ -8,8 +9,7 @@ export default StyleSheet.create({
   appContainer: {
     flex: 1,
     backgroundColor: PURE_WHITE,
-  },
-  // --- Header & Status Bar ---
+  }, // --- Header & Status Bar ---
   header: {
     paddingHorizontal: 15,
     paddingVertical: 10,
@@ -23,8 +23,7 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: PRIMARY_BLACK,
-  },
-  // --- Main Content ---
+  }, // --- Main Content ---
   contentPadding: {
     padding: 20,
   },
@@ -33,19 +32,33 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: PRIMARY_BLACK,
     marginBottom: 20,
-  },
-  // --- Profile Section ---
+  }, // --- Profile Section ---
   profileSection: {
     alignItems: "center",
     marginBottom: 30,
-  },
-  profileImage: {
+  }, // ⭐️⭐️⭐️ 1. 이미지 컨테이너 스타일 (TouchableOpacity용) ⭐️⭐️⭐️
+
+  profileImageContainer: {
+    borderRadius: 40,
+    overflow: "hidden",
     width: 80,
     height: 80,
-    borderRadius: 40,
-    backgroundColor: "#ccc", // 임시 이미지
     marginBottom: 10,
+  }, // ⚠️ 2. 기존 profileImage 스타일을 Image/View 컴포넌트에 맞게 수정 (100% 채우기 및 중앙 정렬)
+
+  profileImage: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 40,
+    backgroundColor: "#ccc",
+    justifyContent: "center", // 텍스트/아이콘 수직 중앙 정렬
+    alignItems: "center", // 텍스트/아이콘 수평 중앙 정렬
+  }, // ⭐️⭐️⭐️ 3. 기본 이미지 텍스트 스타일 ⭐️⭐️⭐️
+
+  defaultImageText: {
+    fontSize: 30,
   },
+
   nameText: {
     fontSize: 20,
     fontWeight: "bold",
@@ -55,8 +68,7 @@ export default StyleSheet.create({
     fontSize: 14,
     color: SECONDARY_INDIGO,
     marginTop: 4,
-  },
-  // --- Info Section ---
+  }, // --- Info Section ---
   infoSection: {
     marginBottom: 30,
   },
@@ -73,8 +85,7 @@ export default StyleSheet.create({
   infoValue: {
     fontSize: 16,
     color: PRIMARY_BLACK,
-  },
-  // --- Goal Section ---
+  }, // --- Goal Section ---
   goalSection: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -112,7 +123,5 @@ export default StyleSheet.create({
   },
   targetColor: {
     color: SECONDARY_INDIGO,
-  },
-  // --- 기타 스타일 ---
-  // (MyPageEdit, Challenge 등 다른 컴포넌트에서 사용될 스타일도 여기에 통합하거나 별도 파일로 분리 가능)
+  }, // --- 기타 스타일 ---
 });

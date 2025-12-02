@@ -4,60 +4,42 @@ const SignupStyles = StyleSheet.create({
   appContainer: {
     flex: 1,
     backgroundColor: "#f5f5f5",
-    paddingTop: 40,
-  },
-
-  statusBarContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    marginBottom: 20,
-    alignItems: "center",
-    width: "100%",
-  },
-  time: {
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-  statusIcons: {
-    flexDirection: "row",
-  },
-  iconText: {
-    fontSize: 14,
-    marginLeft: 5,
   },
 
   signupContent: {
     flex: 1,
-    paddingHorizontal: 30,
-    alignItems: "center",
+    paddingHorizontal: 20,
+    alignItems: "flex-start",
     width: "100%",
+    paddingTop: 20,
   },
   title: {
     fontSize: 28,
     fontWeight: "bold",
-    marginBottom: 40,
+    marginBottom: 30,
   },
 
   inputContainer: {
     width: "100%",
-    marginBottom: 25,
+    marginBottom: 15,
+    alignItems: "flex-start",
   },
   inputLabel: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
-    marginBottom: 8,
+    marginBottom: 5,
     textAlign: "left",
     width: "100%",
   },
   textInput: {
     width: "100%",
-    height: 50,
+    height: 45,
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 8,
     paddingHorizontal: 15,
     backgroundColor: "#fff",
+    fontSize: 16,
   },
 
   primaryButton: {
@@ -67,7 +49,7 @@ const SignupStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 8,
-    marginTop: 40,
+    marginTop: 30,
     marginBottom: 15,
   },
   buttonText: {
@@ -77,8 +59,8 @@ const SignupStyles = StyleSheet.create({
   },
 
   footerNav: {
-    paddingHorizontal: 30,
-    paddingBottom: 30,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
     width: "100%",
   },
 });

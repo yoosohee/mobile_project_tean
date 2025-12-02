@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+// 🎨 프로젝트 Primary Color 설정
 const PRIMARY_BLACK = "#0B1215";
 const SECONDARY_INDIGO = "#4F46E5";
 const PURE_WHITE = "#FFFFFF";
@@ -8,8 +9,8 @@ export default StyleSheet.create({
   appContainer: {
     flex: 1,
     backgroundColor: PURE_WHITE,
-  },
-  // --- Header & Navigation ---
+  }, // --- Header & Navigation ---
+  // ... (기존 스타일 유지) ...
   header: {
     paddingHorizontal: 15,
     paddingVertical: 10,
@@ -28,21 +29,18 @@ export default StyleSheet.create({
     color: PRIMARY_BLACK,
   },
   appName: {
-    // 헤더 중앙 타이틀 (프로필 수정)
     flex: 1,
     textAlign: "center",
     fontSize: 18,
     fontWeight: "600",
     color: PRIMARY_BLACK,
-    marginRight: 20, // 종 아이콘 공간 확보
+    marginRight: 20,
   },
   notificationIcon: {
-    // 우측 종 아이콘 자리
     width: 24,
     height: 24,
-  },
+  }, // --- Main Content ---
 
-  // --- Main Content ---
   contentPadding: {
     padding: 20,
   },
@@ -51,28 +49,40 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: PRIMARY_BLACK,
     marginBottom: 20,
-  },
-  // --- Profile Section ---
+  }, // --- Profile Section ---
   profileSection: {
     alignItems: "center",
     marginBottom: 30,
     borderBottomWidth: 1,
     borderBottomColor: "#f0f0f0",
     paddingBottom: 20,
-  },
+  }, // ⚠️ 기존 profileImage는 Image/View에 적용되도록 수정
   profileImage: {
-    width: 80,
-    height: 80,
+    width: "100%",
+    height: "100%",
     borderRadius: 40,
     backgroundColor: "#ccc",
+    justifyContent: "center",
+    alignItems: "center",
+  }, // ⭐️⭐️⭐️ 이미지 변경 기능 추가 스타일 ⭐️⭐️⭐️
+
+  profileImageContainer: {
+    // TouchableOpacity에 적용될 컨테이너
+    borderRadius: 40,
+    overflow: "hidden",
+    width: 80,
+    height: 80,
     marginBottom: 10,
   },
+  defaultImageText: {
+    // 이미지가 없을 때 표시할 아이콘 스타일
+    fontSize: 30,
+  }, // ⭐️⭐️⭐️ 추가 스타일 끝 ⭐️⭐️⭐️
   nameText: {
     fontSize: 20,
     fontWeight: "bold",
     color: PRIMARY_BLACK,
-  },
-  // --- Info Section (Read-Only Fields) ---
+  }, // --- Info Section (Read-Only Fields) ---
   infoSection: {
     marginBottom: 30,
   },
@@ -89,9 +99,8 @@ export default StyleSheet.create({
   infoValue: {
     fontSize: 16,
     color: PRIMARY_BLACK,
-  },
+  }, // --- Weight Input Section ---
 
-  // --- Weight Input Section ---
   weightInputContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -117,11 +126,9 @@ export default StyleSheet.create({
     marginTop: 5,
   },
   targetBorder: {
-    // 목표 체중 입력 시 인디고 색상 강조
     borderColor: SECONDARY_INDIGO,
     color: SECONDARY_INDIGO,
-  },
-  // --- Button Styles ---
+  }, // --- Button Styles ---
   primaryButton: {
     backgroundColor: SECONDARY_INDIGO,
     padding: 15,

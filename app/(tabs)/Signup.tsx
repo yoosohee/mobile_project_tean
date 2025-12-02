@@ -1,5 +1,6 @@
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   SafeAreaView,
   Text,
@@ -9,36 +10,16 @@ import {
 } from "react-native";
 import styles from "./SignupStyles";
 
-// 회원가입 페이지 컴포넌트
 const SignupScreen: React.FC = () => {
-  // 실시간 시계 로직 (UI 통일성을 위해 Login 화면과 동일 적용)
-  const [currentTime, setCurrentTime] = useState("");
+  const router = useRouter();
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      setCurrentTime(`${hours}:${minutes}`);
-    };
-
-    updateTime();
-    const timerId = setInterval(updateTime, 1000);
-    return () => clearInterval(timerId);
-  }, []);
+  const handleSignup = () => {
+    router.push("/(tabs)/MyPage");
+  };
 
   return (
-    // SafeAreaView -> 노치 디자인 영역 피함
     <SafeAreaView style={styles.appContainer}>
-      <View style={styles.statusBarContainer}>
-        <StatusBar style="auto" />
-        <Text style={styles.time}>{currentTime}</Text>
-
-        <View style={styles.statusIcons}>
-          <Text style={styles.iconText}>📶</Text>
-          <Text style={styles.iconText}>🔋</Text>
-        </View>
-      </View>
+      <StatusBar style="auto" />
 
       <View style={styles.signupContent}>
         <Text style={styles.title}>회원가입</Text>
@@ -70,6 +51,7 @@ const SignupScreen: React.FC = () => {
           />
         </View>
 
+        {/* ... 나머지 입력 필드 유지 ... */}
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>비밀번호 확인</Text>
           <TextInput
@@ -97,7 +79,7 @@ const SignupScreen: React.FC = () => {
           />
         </View>
 
-        <TouchableOpacity style={styles.primaryButton}>
+        <TouchableOpacity style={styles.primaryButton} onPress={handleSignup}>
           <Text style={styles.buttonText}>회원가입</Text>
         </TouchableOpacity>
       </View>
