@@ -14,7 +14,7 @@ import styles from "./MyPageEditStyles";
 import { mockProfileData } from "../../mock/mockData";
 
 const MyPageEditScreen: React.FC<any> = ({ navigation }) => {
-  // 상태 관리에서 초기 데ㅣ터 가져옴
+  // 상태 관리에서 초기 데이터 가져옴
   const initialData = mockProfileData;
   const [currentWeight, setCurrentWeight] = useState(
     initialData.currentWeight.replace("kg", "")

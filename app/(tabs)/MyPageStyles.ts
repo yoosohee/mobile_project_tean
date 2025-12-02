@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 
-// 🎨 프로젝트 Primary Color 설정
 const PRIMARY_BLACK = "#0B1215";
 const SECONDARY_INDIGO = "#4F46E5";
 const PURE_WHITE = "#FFFFFF";
